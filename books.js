@@ -1,4 +1,4 @@
-
+const API_KEY = 'AIzaSyCnwJ-PEA3yroXeiXL6rV_Ib0N1meHad70'; // Ваш API Key
 const SHEET_ID = '1aEXTCJLgTJAXx-jlmifkOYhDxhOfyEsIJDLJCNlFBi4'; // ID вашей таблицы
 const RANGE = 'Books!A2:C'; // Укажите диапазон данных
 
