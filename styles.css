@@ -3,16 +3,40 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    height: 100vh; /* Задаем высоту вьюпорта */
+    flex-direction: column; /* Изменено для мобильной версии */
+    height: 100vh;
 }
 
-.sidebar {
-    width: 130px;
-    background-color: #f4f4f4;
-    padding: 15px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    height: 100%; /* Занимает всю высоту */
+.top-bar {
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; /* Размещение элементов по краям */
+    align-items: center; /* Вертикальное выравнивание */
 }
+
+#menu-toggle {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.title {
+    font-weight: bold;
+    margin: 0;
+}
+
+
+.sidebar {
+    width: 100%; /* Занимает всю ширину на мобильных */
+    background-color: #f4f4f4;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    height: auto; /* Автоматическая высота */
+    display: none; /* Скрыто по умолчанию */
+    
+}
+
 
 .sidebar a {
     display: block;
@@ -27,7 +51,21 @@ body {
 }
 
 .content {
-    flex: 1; /* Занимает оставшееся пространство */
+    flex: 1;
     padding: 20px;
     text-align: center;
+}
+
+/* Стиль для больших экранов (ПК) */
+@media (min-width: 768px) {
+    body {
+        flex-direction: row; /* Возвращаем горизонтальное расположение */
+    }
+    .sidebar {
+        width: 130px;
+        display: block; /* Отображаем боковую панель на больших экранах */
+    }
+    .top-bar {
+        display: none; /* Скрываем верхнюю панель на больших экранах */
+    }
 }

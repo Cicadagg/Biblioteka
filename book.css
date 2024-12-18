@@ -3,17 +3,39 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.top-bar {
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#menu-toggle {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.title {
+    font-weight: bold;
+    margin: 0;
 }
 
 .sidebar {
-    width: 130px;
+    width: 100%; /* Занимает всю ширину на мобильных */
     background-color: #f4f4f4;
-    color: #333;
-    padding: 15px;
-    position: fixed;
-    height: 100%;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: none; /* Скрыто по умолчанию */
+    
 }
+
 
 .sidebar a {
     color: #333;
@@ -28,24 +50,57 @@ body {
 }
 
 .content {
-    margin-left: 150px;
+    flex: 1;
     padding: 20px;
 }
 
 .book-details {
-    display: flex; /* Используем flexbox для расположения изображения и описания */
-    align-items: flex-start; /* Выравнивание по верхнему краю */
+    display: flex;
+    flex-direction: column; /* Изменено для мобильных устройств */
+    align-items: center; /* Выравнивание по центру */
 }
 
 .book-image {
-    margin-right: 20px; /* Отступ между изображением и описанием */
+    margin-bottom: 20px; /* Отступ между изображением и описанием */
+    width: 100%; /* Занимаем всю ширину на мобильном */
+    max-width: 300px;
 }
 
 .book-image img {
-    max-width: 300px; /* Ограничиваем максимальную ширину изображения */
-    height: auto; /* Автоматическая высота */
+    max-width: 100%;
+    height: auto;
+    width: 100%;
 }
 
 .book-description {
-    max-width: 600px; /* Ограничиваем максимальную ширину описания */
+    max-width: 100%; /* Занимает всю ширину на мобильном */
+    text-align: justify;
+}
+
+
+/* Медиа-запрос для больших экранов */
+@media (min-width: 768px) {
+    body {
+        flex-direction: row;
+    }
+    .sidebar {
+        width: 130px;
+        display: block;
+    }
+    .content {
+        margin-left: 150px;
+    }
+    .top-bar {
+        display: none;
+    }
+    .book-details {
+        flex-direction: row; /* Возвращаем горизонтальное расположение на больших экранах */
+        align-items: flex-start;
+    }
+    .book-image {
+        margin-right: 20px;
+        margin-bottom: 0; /* Убираем отступ снизу */
+        max-width: 300px;
+        width: auto;
+    }
 }

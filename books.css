@@ -2,87 +2,132 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.top-bar {
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#menu-toggle {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.title {
+    font-weight: bold;
+    margin: 0;
 }
 
 .sidebar {
-    width: 130px; /* Ширина сайдбара */
-    background-color: #f4f4f4; /* Цвет фона сайдбара */
-    color: #333; /* Цвет текста */
-    padding: 15px;
-    position: fixed; /* Фиксированное положение */
-    height: 100%; /* Высота сайдбара на всю высоту экрана */
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Тень для сайдбара */
+    width: 100%; /* Занимает всю ширину на мобильных */
+    background-color: #f4f4f4;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: none; /* Скрыто по умолчанию */
+    
 }
 
+
 .sidebar a {
-    color: #333; /* Цвет текста ссылок */
-    text-decoration: none; /* Убираем подчеркивание */
-    display: block; /* Блочный элемент */
-    padding: 10px; /* Отступы для ссылок */
-    margin-bottom: 5px; /* Отступ между ссылками */
+    color: #333;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    margin-bottom: 5px;
 }
 
 .sidebar a:hover {
-    background-color: #ddd; /* Цвет фона при наведении */
+    background-color: #ddd;
 }
 
 .content {
-    margin-left: 150px; /* Отступ для боковой панели */
-    padding: 20px; /* Отступы для контента */
+    flex: 1;
+    padding: 20px;
 }
 
 h1 {
-    text-align: center; /* Выравнивание заголовка по центру */
+    text-align: center;
 }
 
 .book-grid {
-    display: grid; /* Используем сетку для отображения книг */
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Настройка колонок */
-    gap: 15px; /* Промежуток между элементами */
-    padding: 20px; /* Отступы внутри сетки */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Адаптивная сетка */
+    gap: 15px;
+    padding: 10px;
 }
 
 .book-item {
-    background-color: white; /* Цвет фона для элемента книги */
-    border: 1px solid #ccc; /* Рамка для элемента книги */
-    border-radius: 5px; /* Закругленные углы */
-    overflow: hidden; /* Скрываем переполнение */
-    position: relative; /* Для позиционирования описания книги */
-    transition: transform 0.2s; /* Плавный переход при наведении */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s;
 }
 
 .book-item:hover {
-    transform: scale(1.05); /* Увеличение при наведении */
+    transform: scale(1.05);
 }
 
 .book-image {
-    position: relative; /* Для позиционирования изображения */
+    position: relative;
 }
 
 .book-image img {
-    width: 100%; /* Ширина изображения на 100% */
-    height: auto; /* Автоматическая высота */
+    width: 100%;
+    height: auto;
 }
 
 .book-description {
-    display: none; /* Скрываем описание по умолчанию */
-    position: absolute; /* Абсолютное позиционирование */
-    bottom: 0; /* Прикрепляем к низу */
-    left: 0; /* Прикрепляем к левому краю */
-    right: 0; /* Прикрепляем к правому краю */
-    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
-    color: white; /* Цвет текста */
-    padding: 10px; /* Отступы для описания */
-    opacity: 0.8; /* Непрозрачность */
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    opacity: 0.8;
+    transition: opacity 0.3s; /* Плавное появление описания */
 }
 
 .book-image:hover .book-description {
-    display: block; /* Показываем описание при наведении на изображение */
+    display: block;
+    opacity: 1; /* Полная непрозрачность при наведении */
 }
 
 .book-name {
-    text-align: center; /* Выравнивание имени книги по центру */
-    padding: 10px; /* Отступы для имени книги */
-    font-weight: bold; /* Жирный шрифт */
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+}
+
+
+/* Медиа-запрос для больших экранов */
+@media (min-width: 768px) {
+    body {
+        flex-direction: row;
+    }
+    .sidebar {
+        width: 130px;
+        display: block;
+    }
+    .content {
+        margin-left: 150px;
+    }
+    .top-bar {
+        display: none;
+    }
+    .book-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Более широкие колонки */
+    }
+
 }
