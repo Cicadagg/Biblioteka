@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh; /* Задаем высоту вьюпорта */
+}
+
+.sidebar {
+    width: 130px;
+    background-color: #f4f4f4;
+    padding: 15px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    height: 100%; /* Занимает всю высоту */
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.sidebar a:hover {
+    background-color: #ddd;
+}
+
+.content {
+    flex: 1; /* Занимает оставшееся пространство */
+    padding: 20px;
+    text-align: center;
+}

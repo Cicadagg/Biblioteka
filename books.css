@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.sidebar {
+    width: 130px; /* Ширина сайдбара */
+    background-color: #f4f4f4; /* Цвет фона сайдбара */
+    color: #333; /* Цвет текста */
+    padding: 15px;
+    position: fixed; /* Фиксированное положение */
+    height: 100%; /* Высота сайдбара на всю высоту экрана */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Тень для сайдбара */
+}
+
+.sidebar a {
+    color: #333; /* Цвет текста ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
+    display: block; /* Блочный элемент */
+    padding: 10px; /* Отступы для ссылок */
+    margin-bottom: 5px; /* Отступ между ссылками */
+}
+
+.sidebar a:hover {
+    background-color: #ddd; /* Цвет фона при наведении */
+}
+
+.content {
+    margin-left: 150px; /* Отступ для боковой панели */
+    padding: 20px; /* Отступы для контента */
+}
+
+h1 {
+    text-align: center; /* Выравнивание заголовка по центру */
+}
+
+.book-grid {
+    display: grid; /* Используем сетку для отображения книг */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Настройка колонок */
+    gap: 15px; /* Промежуток между элементами */
+    padding: 20px; /* Отступы внутри сетки */
+}
+
+.book-item {
+    background-color: white; /* Цвет фона для элемента книги */
+    border: 1px solid #ccc; /* Рамка для элемента книги */
+    border-radius: 5px; /* Закругленные углы */
+    overflow: hidden; /* Скрываем переполнение */
+    position: relative; /* Для позиционирования описания книги */
+    transition: transform 0.2s; /* Плавный переход при наведении */
+}
+
+.book-item:hover {
+    transform: scale(1.05); /* Увеличение при наведении */
+}
+
+.book-image {
+    position: relative; /* Для позиционирования изображения */
+}
+
+.book-image img {
+    width: 100%; /* Ширина изображения на 100% */
+    height: auto; /* Автоматическая высота */
+}
+
+.book-description {
+    display: none; /* Скрываем описание по умолчанию */
+    position: absolute; /* Абсолютное позиционирование */
+    bottom: 0; /* Прикрепляем к низу */
+    left: 0; /* Прикрепляем к левому краю */
+    right: 0; /* Прикрепляем к правому краю */
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
+    color: white; /* Цвет текста */
+    padding: 10px; /* Отступы для описания */
+    opacity: 0.8; /* Непрозрачность */
+}
+
+.book-image:hover .book-description {
+    display: block; /* Показываем описание при наведении на изображение */
+}
+
+.book-name {
+    text-align: center; /* Выравнивание имени книги по центру */
+    padding: 10px; /* Отступы для имени книги */
+    font-weight: bold; /* Жирный шрифт */
+}
