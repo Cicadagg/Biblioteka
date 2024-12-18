@@ -27,7 +27,7 @@ async function fetchBooks() {
             const description = row[2]; // Получаем описание книги
 
             // Формируем URL для изображения
-            const imgUrl = `C:/bibliotekakgtk/images/${imgId}.webp`; // Предполагаем, что изображения имеют формат .webp
+            const imgUrl = `/images/${imgId}.webp`; // Предполагаем, что изображения имеют формат .webp
 
             const bookItem = document.createElement('div');
             bookItem.className = 'book-item';
