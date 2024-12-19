@@ -60,7 +60,7 @@ h1 {
 .book-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Адаптивная сетка */
-    gap: 15px;
+    gap: 10px;
     padding: 10px;
 }
 
@@ -71,6 +71,8 @@ h1 {
     overflow: hidden;
     position: relative;
     transition: transform 0.2s;
+    width: 170px; /* Уменьшаем ширину контейнера книги */
+    height: 280px; /* Уменьшаем высоту контейнера книги */
 }
 
 .book-item:hover {
@@ -82,8 +84,8 @@ h1 {
 }
 
 .book-image img {
-    width: 100%;
-    height: auto;
+    width: 100%; /* Изображение занимает 100% ширины контейнера */
+    height: auto; /* Высота изображения автоматически подстраивается */
 }
 
 .book-description {
@@ -106,9 +108,17 @@ h1 {
 
 .book-name {
     text-align: center;
-    padding: 10px;
+    padding: 5px;
     font-weight: bold;
+    text-decoration: none; /* Убираем подчеркивание */
 }
+
+/* Для всех ссылок внутри book-item, чтобы убрать подчеркивание */
+.book-item a {
+    text-decoration: none; /* Убираем подчеркивание для всех ссылок в book-item */
+    color: inherit; /* Устанавливаем цвет текста как у родителя (book-name) */
+}
+
 
 
 /* Медиа-запрос для больших экранов */
