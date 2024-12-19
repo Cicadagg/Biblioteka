@@ -32,18 +32,18 @@ body {
     width: 100%; /* Занимает всю ширину на мобильных */
     background-color: #f4f4f4;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    height: auto; /* Автоматическая высота */
     display: none; /* Скрыто по умолчанию */
-    
+    margin-left: 10px;
 }
 
 
 .sidebar a {
+    color: #333;
+    text-decoration: none;
     display: block;
     padding: 10px;
-    text-decoration: none;
-    color: #333;
     margin-bottom: 5px;
+    margin-left: 7px;
 }
 
 .sidebar a:hover {
