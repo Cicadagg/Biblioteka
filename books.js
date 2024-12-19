@@ -15,32 +15,59 @@ async function fetchBooks() {
 
         const rows = data.values;
         const grid = document.getElementById('bookGrid');
+        const bookCount = document.getElementById('bookCount');
+        const searchInput = document.getElementById('searchInput');
 
-        rows.forEach(row => {
-            if (row.length < 3) {
-                console.warn("Недостаточно данных в строке:", row);
-                return; // Проверка на наличие всех данных
-            }
+        // Отображаем общее количество книг
+        bookCount.textContent = `Всего книг: ${rows.length}`;
 
-            const imgId = row[0]; // Получаем идентификатор изображения
-            const name = row[1];   // Получаем название книги
-            const description = row[2]; // Получаем описание книги
+        // Функция для отображения книг
+        function displayBooks(filteredRows) {
+            grid.innerHTML = ''; // Очищаем предыдущие элементы
+            filteredRows.forEach(row => {
+                if (row.length < 3) {
+                    console.warn("Недостаточно данных в строке:", row);
+                    return; // Проверка на наличие всех данных
+                }
 
-            // Формируем URL для изображения
-            const imgUrl = `/images/${imgId}.webp`; // Предполагаем, что изображения имеют формат .webp
+                const imgId = row[0]; // Получаем идентификатор изображения
+                const name = row[1];   // Получаем название книги
+                const description = row[2]; // Получаем описание книги
 
-            const bookItem = document.createElement('div');
-            bookItem.className = 'book-item';
-            bookItem.innerHTML = `
-                <a href="book.html?imgId=${imgId}&name=${encodeURIComponent(name)}&description=${encodeURIComponent(description)}">
-                    <div class="book-image">
-                        <img src="${imgUrl}" alt="${name}">
-                    </div>
-                    <div class="book-name">${name}</div>
-                </a>
-            `;
-            grid.appendChild(bookItem);
+                // Формируем URL для изображения
+                const imgUrl = `/images/${imgId}.webp`; // Предполагаем, что изображения имеют формат .webp
+
+                const bookItem = document.createElement('div');
+                bookItem.className = 'book-item';
+                bookItem.innerHTML = `
+                    <a href="book.html?imgId=${imgId}&name=${encodeURIComponent(name)}&description=${encodeURIComponent(description)}">
+                        <div class="book-image">
+                            <img src="${imgUrl}" alt="${name}">
+                        </div>
+                        <div class="book-name">${name}</div>
+                    </a>
+                `;
+                grid.appendChild(bookItem);
+            });
+
+            // Анимация появления
+            grid.style.opacity = 1; // Устанавливаем непрозрачность в 1 для отображения
+        }
+
+        // Изначально отображаем все книги
+        displayBooks(rows);
+
+        // Добавляем обработчик события для фильтрации
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredRows = rows.filter(row => row[1].toLowerCase().includes(searchTerm));
+            bookCount.textContent = `Всего книг: ${filteredRows.length}`; // Обновляем количество книг
+            grid.style.opacity = 0; // Устанавливаем непрозрачность в 0 для скрытия
+            setTimeout(() => {
+                displayBooks(filteredRows); // Отображаем отфильтрованные книги после задержки
+            }, 300); // Задержка, чтобы анимация исчезновения сработала
         });
+
     } catch (error) {
         console.error("Ошибка при получении данных:", error);
     }
