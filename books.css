@@ -174,3 +174,37 @@ h1 {
         margin: 10px auto; /* Центрирование элемента */
     }
 }
+
+.category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.category-button {
+    background-color: white; /* Изменяем цвет на белый */
+    color: #333; /* Темный текст для контраста */
+    padding: 15px 30px; /* Увеличиваем отступы */
+    margin: 10px; /* Увеличиваем отступ между кнопками */
+    border: 1px solid #ccc; /* Добавляем рамку для выделения */
+    border-radius: 8px; /* Увеличиваем радиус скругления */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Плавный переход для фона и трансформации */
+    font-size: 16px; /* Увеличиваем размер шрифта */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Добавляем тень для глубины */
+}
+
+.category-button:hover {
+    background-color: #f0f0f0; /* Светло-серый фон при наведении */
+    transform: scale(1.05); /* Увеличение кнопки при наведении */
+}
+
+/* Адаптивные стили для маленьких экранов */
+@media (max-width: 480px) {
+    .category-button {
+        padding: 10px 20px; /* Уменьшаем отступы на мобильных */
+        font-size: 14px; /* Уменьшаем размер шрифта на мобильных */
+    }
+}
+
