@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книги по категории</title>
+    <link rel="stylesheet" href="books.css">
+</head>
+<body>
+    <div class="top-bar">
+        <button id="menu-toggle">☰</button>
+        <div class="title">Книги по категории</div>
+    </div>
+    <div class="sidebar">
+        <a href="index.html">Главная</a>
+        <a href="books.html">Список Категорий</a>
+    </div>
+    <div class="content">
+        <h1 id="categoryTitle"></h1>
+        <input type="text" id="searchInput" placeholder="Поиск по названию книги" />
+        <div id="bookCount" class="book-count"></div>
+        <div class="book-grid" id="bookGrid"></div>
+    </div>
+    <script src="books.js"></script>
+    <script src="button.js"></script>
+</body>
+</html>
