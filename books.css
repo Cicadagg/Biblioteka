@@ -30,6 +30,7 @@ body {
 
 .sidebar {
     width: 100%; /* Занимает всю ширину на мобильных */
+    height: 100%;
     background-color: #f4f4f4;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: none; /* Скрыто по умолчанию */
@@ -67,6 +68,7 @@ h1 {
     max-width: 180px; 
     height: auto; 
     margin: 1px;
+    min-height: 100px; /* Установите минимальную высоту */
 }
 
 .book-item:hover {
@@ -102,14 +104,14 @@ h1 {
 
 .book-name {
     text-align: center;
-    padding: 1px;
+    padding: 5px;
     font-weight: bold;
     text-decoration: none; /* Убираем подчеркивание */
-    font-size: 10px; /* Размер шрифта */
-    height: auto; /* Убедитесь, что высота автоматически подстраивается */
-    padding: 5px 0; /* Увеличьте отступы для лучшего восприятия */
+    font-size: 11px; /* Размер шрифта */
     white-space: normal; /* Позволяет тексту переноситься */
+    line-height: 1.2; /* Увеличивает межстрочный интервал для лучшей читаемости */
 }
+
 
 /* Для всех ссылок внутри book-item, чтобы убрать подчеркивание */
 .book-item a {
@@ -176,7 +178,7 @@ h1 {
     }
     .book-item {
         max-width: 180px; /* Уменьшение максимальной ширины для маленьких экранов */
-        height: 190px; /* Уменьшение высоты для маленьких экранов */
+        height: 240px; /* Уменьшение высоты для маленьких экранов */
     }
     #searchInput {
         max-width: 90%; /* Уменьшаем ширину на мобильных */
