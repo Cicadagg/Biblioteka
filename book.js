@@ -26,8 +26,9 @@ console.log('Predmet:', predmet);
 document.getElementById('bookTitle').innerText = name;
 
 // Формируем URL для изображения
-const imgUrl = `Biblioteka/images/${imgId}.webp`; // Предполагаем, что изображения имеют формат .webp
-const defaultImgUrl = `Biblioteka/images/not_book.webp`; // Путь к стандартному изображению
+const imgUrl = `https://raw.githubusercontent.com/Cicadagg/Biblioteka/main/images/${imgId}.webp`;
+const defaultImgUrl = `https://raw.githubusercontent.com/Cicadagg/Biblioteka/main/images/not_book.webp`;
+
 
 // Устанавливаем изображение с обработчиком ошибок
 const bookImgElement = document.getElementById('bookImg');
