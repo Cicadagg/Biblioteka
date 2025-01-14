@@ -1,6 +1,6 @@
 const API_KEY = 'AIzaSyCnwJ-PEA3yroXeiXL6rV_Ib0N1meHad70'; // Ваш API Key
 const SHEET_ID = '1aEXTCJLgTJAXx-jlmifkOYhDxhOfyEsIJDLJCNlFBi4'; // ID вашей таблицы
-const RANGE_BOOKS = 'Books!A2:E'; // Укажите диапазон данных для книг
+const RANGE_BOOKS = 'Books!A2:G'; // Укажите диапазон данных для книг
 const RANGE_CATEGORIES = 'Books!B2:B'; // Укажите диапазон данных для категорий
 
 async function fetchCategories() {
@@ -77,44 +77,49 @@ async function fetchBooks() {
             });
         }
 
-        // Функция для отображения книг
         async function displayBooks(books) {
             grid.innerHTML = ''; // Очищаем предыдущие элементы
             for (const row of books) {
-                if (row.length < 5) {
+                if (row.length < 7) { // Проверяем, что в строке достаточно данных (7 вместо 6)
                     console.warn("Недостаточно данных в строке:", row);
                     continue; // Проверка на наличие всех данных
                 }
-
+        
                 const imgId = row[0]; // Получаем идентификатор книги
                 const category = row[1]; // Получаем категорию
-                const name = row[2]; // Получаем название книги
-                const description = row[3]; // Получаем описание книги
-                const author = row[4]; // Получаем автора книги
-
+                const predmet = row[2]; // Получаем название предмета
+                const name = row[3]; // Получаем название книги
+                const year = row[4]; // Получаем год книги
+                const description = row[5]; // Получаем описание книги
+                const author = row[6]; // Получаем автора книги
+        
                 // Формируем URL для изображения
                 const imgUrl = `/images/${imgId}.webp`; // Предполагаем, что изображения имеют формат .webp
                 const defaultImgUrl = `/images/not_book.webp`; // Путь к стандартному изображению
-
+        
                 // Проверка доступности изображения
                 const imgExists = await checkImageExists(imgUrl);
-
+        
                 const bookItem = document.createElement('div');
                 bookItem.className = 'book-item';
                 bookItem.innerHTML = `
-                    <a href="book.html?imgId=${imgId}&name=${encodeURIComponent(name)}&description=${encodeURIComponent(description)}&author=${encodeURIComponent(author)}">
+                    <a href="book.html?imgId=${imgId}&name=${encodeURIComponent(name)}&description=${encodeURIComponent(description)}&author=${encodeURIComponent(author)}&year=${encodeURIComponent(year)}&predmet=${encodeURIComponent(predmet)}">
                         <div class="book-image">
                             <img src="${imgExists ? imgUrl : defaultImgUrl}" alt="${name}">
+                            <div class="book-year">${year}</div> <!-- Добавляем год книги -->
                         </div>
                         <div class="book-name">${name}</div>
                     </a>
                 `;
                 grid.appendChild(bookItem);
             }
-
+        
             // Анимация появления
             grid.style.opacity = 1; // Устанавливаем непрозрачность в 1 для отображения
         }
+        
+        
+        
 
         // Изначально отображаем отфильтрованные книги
         await displayBooks(filteredRows); // Добавлено await для асинхронного вызова

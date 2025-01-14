@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column; /* Изменено для мобильной версии */
+    flex-direction: column;
     height: 100vh;
 }
 
@@ -11,8 +11,9 @@ body {
     background-color: white;
     padding: 10px;
     display: flex;
-    justify-content: space-between; /* Размещение элементов по краям */
-    align-items: center; /* Вертикальное выравнивание */
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden; /* Предотвращает выход элементов за пределы */
 }
 
 #menu-toggle {
@@ -27,15 +28,12 @@ body {
     margin: 0;
 }
 
-
 .sidebar {
     width: 100%; /* Занимает всю ширину на мобильных */
     background-color: #f4f4f4;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: none; /* Скрыто по умолчанию */
-    margin-left: 10px;
 }
-
 
 .sidebar a {
     color: #333;

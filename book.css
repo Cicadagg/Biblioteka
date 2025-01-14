@@ -2,7 +2,6 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -14,6 +13,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden; /* Предотвращает выход элементов за пределы */
 }
 
 #menu-toggle {
@@ -31,9 +31,8 @@ body {
 .sidebar {
     width: 100%; /* Занимает всю ширину на мобильных */
     background-color: #f4f4f4;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: none; /* Скрыто по умолчанию */
-    margin-left: 10px;
 }
 
 .sidebar a {
@@ -51,56 +50,94 @@ body {
 
 .content {
     flex: 1;
-    padding: 20px;
+    padding: 8px; /* Уменьшен отступ */
+}
+
+.book-title {
+    background-color: black;
+    color: white;
+    padding: 10px; /* Уменьшен отступ */
+    text-align: left;
+    font-size: 20px; /* Уменьшен размер шрифта */
+    margin-bottom: 15px; /* Уменьшен отступ */
 }
 
 .book-details {
     display: flex;
-    flex-direction: column; /* Изменено для мобильных устройств */
-    align-items: center; /* Выравнивание по центру */
+    flex-direction: row; /* Горизонтальное расположение на ПК */
+    margin-bottom: 15px; /* Уменьшен отступ */
 }
 
 .book-image {
-    margin-bottom: 20px; /* Отступ между изображением и описанием */
-    width: 100%; /* Занимаем всю ширину на мобильном */
-    max-width: 300px;
+    margin-right: 10px; /* Уменьшен отступ справа */
+    width: auto; /* Автоматическая ширина для изображения */
 }
 
 .book-image img {
     max-width: 100%;
-    height: auto;
-    width: 100%;
+    height: auto; 
 }
 
 .book-description {
-    max-width: 100%; /* Занимает всю ширину на мобильном */
-    text-align: justify;
+    background-color: #e0e0e0; 
+    padding: 10px; /* Уменьшен отступ */
+    text-align: left; 
 }
 
+.book-info {
+    width: 100%; 
+}
+
+.info-title {
+    background-color: black; 
+    color: white; 
+    padding: 8px; /* Уменьшен отступ */
+    text-align: center; 
+}
+
+.book-author-year {
+    background-color: #e0e0e0; 
+    color: #000000; 
+    padding: 4px; /* Уменьшен отступ */
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 767px) {
+
+   .book-details {
+        flex-direction: column; /* Вертикальное расположение на мобильных */
+        align-items:center; /* Центрирование содержимого */
+   }
+   
+   .book-title,
+   .book-description,
+   .book-author-year {
+        width:auto; /* Автоматическая ширина для лучшего размещения */
+        text-align:center; /* Центрирование текста */
+   }
+}
 
 /* Медиа-запрос для больших экранов */
 @media (min-width: 768px) {
-    body {
-        flex-direction: row;
-    }
-    .sidebar {
-        width: 130px;
-        display: block;
-    }
-    .content {
-        margin-left: 150px;
-    }
-    .top-bar {
-        display: none;
-    }
-    .book-details {
-        flex-direction: row; /* Возвращаем горизонтальное расположение на больших экранах */
-        align-items: flex-start;
-    }
-    .book-image {
-        margin-right: 20px;
-        margin-bottom: 0; /* Убираем отступ снизу */
-        max-width: 300px;
-        width: auto;
-    }
+
+   body {
+        flex-direction: row; 
+   }
+   
+   .sidebar {
+        width: 130px; 
+        display:block; 
+   }
+   
+   .content {
+        margin-left: 30px; /* Уменьшен отступ слева */
+   }
+   
+   .top-bar {
+        display:none; 
+   }
+   
+   .book-details {
+        flex-direction: row; /* Горизонтальное расположение на больших экранах */
+   }
 }
