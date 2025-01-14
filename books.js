@@ -94,8 +94,9 @@ async function fetchBooks() {
                 const author = row[6]; // Получаем автора книги
         
                 // Формируем URL для изображения
-                const imgUrl = `https://raw.githubusercontent.com/Cicadagg/Biblioteka/main/images/${imgId}.webp`;
-                const defaultImgUrl = `https://raw.githubusercontent.com/Cicadagg/Biblioteka/main/images/not_book.webp`;
+                const imgUrl = `https://cicadagg.github.io/Biblioteka/images/${imgId}.webp`;
+                const defaultImgUrl = `https://cicadagg.github.io/Biblioteka/images/not_book.webp`;
+
         
                 // Проверка доступности изображения
                 const imgExists = await checkImageExists(imgUrl);
