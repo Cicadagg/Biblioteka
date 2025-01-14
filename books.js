@@ -94,8 +94,8 @@ async function fetchBooks() {
                 const author = row[6]; // Получаем автора книги
         
                 // Формируем URL для изображения
-                const imgUrl = `/images/${imgId}.webp`; // Предполагаем, что изображения имеют формат .webp
-                const defaultImgUrl = `/images/not_book.webp`; // Путь к стандартному изображению
+                const imgUrl = `Biblioteka/images/${imgId}.webp`; // Предполагаем, что изображения имеют формат .webp
+                const defaultImgUrl = `Biblioteka/images/not_book.webp`; // Путь к стандартному изображению
         
                 // Проверка доступности изображения
                 const imgExists = await checkImageExists(imgUrl);

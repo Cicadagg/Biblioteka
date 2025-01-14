@@ -26,8 +26,8 @@ console.log('Predmet:', predmet);
 document.getElementById('bookTitle').innerText = name;
 
 // Формируем URL для изображения
-const imgUrl = `/images/${imgId}.webp`; // Предполагаем, что изображения имеют формат .webp
-const defaultImgUrl = `/images/not_book.webp`; // Путь к стандартному изображению
+const imgUrl = `Biblioteka/images/${imgId}.webp`; // Предполагаем, что изображения имеют формат .webp
+const defaultImgUrl = `Biblioteka/images/not_book.webp`; // Путь к стандартному изображению
 
 // Устанавливаем изображение с обработчиком ошибок
 const bookImgElement = document.getElementById('bookImg');
