@@ -2,9 +2,10 @@ const params = new URLSearchParams(window.location.search);
 const imgId = params.get('imgId');
 const name = params.get('name');
 const description = decodeURIComponent(params.get('description'));
-const author = params.get('author'); // Получаем автора
-const year = params.get('year'); // Получаем год
-const predmet = params.get('predmet'); // Получаем название предмета
+const author = params.get('author'); 
+const year = params.get('year'); 
+const predmet = params.get('predmet'); 
+const content = decodeURIComponent(params.get('content')); // Получаем content
 
 // Проверяем, если year, author или predmet null, выводим предупреждение в консоли
 if (!year) {
@@ -21,6 +22,7 @@ if (!predmet) {
 console.log('Author:', author);
 console.log('Year:', year);
 console.log('Predmet:', predmet);
+console.log('Content:', content); // Логируем content
 
 // Устанавливаем данные книги
 document.getElementById('bookTitle').innerText = name;
@@ -29,12 +31,11 @@ document.getElementById('bookTitle').innerText = name;
 const imgUrl = `https://cicadagg.github.io/Biblioteka/images/${imgId}.webp`;
 const defaultImgUrl = `https://cicadagg.github.io/Biblioteka/images/not_book.webp`;
 
-
 // Устанавливаем изображение с обработчиком ошибок
 const bookImgElement = document.getElementById('bookImg');
-bookImgElement.src = imgUrl; // Устанавливаем основной URL изображения
+bookImgElement.src = imgUrl; 
 bookImgElement.onerror = () => {
-    bookImgElement.src = defaultImgUrl; // Устанавливаем изображение по умолчанию, если основное не найдено
+    bookImgElement.src = defaultImgUrl; 
 };
 
 // Устанавливаем описание книги
@@ -47,3 +48,6 @@ if (author && year && predmet) {
 } else {
     authorYearPredmetElement.innerText = 'Информация о авторе, годе или предмете отсутствует.';
 }
+
+// Устанавливаем контент книги (если необходимо)
+document.getElementById('bookContent').innerText = content || 'Контент отсутствует.'; // Добавьте элемент с id 'bookContent' в HTML

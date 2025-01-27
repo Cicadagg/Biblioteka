@@ -97,20 +97,27 @@ h1 {
     transition: opacity 0.3s; /* Плавное появление описания */
 }
 
+
 .book-image:hover .book-description {
     display: block;
     opacity: 1; /* Полная непрозрачность при наведении */
 }
 
+
 .book-name {
     text-align: center;
     padding: 5px;
     font-weight: bold;
-    text-decoration: none; /* Убираем подчеркивание */
-    font-size: 11px; /* Размер шрифта */
-    white-space: normal; /* Позволяет тексту переноситься */
-    line-height: 1.2; /* Увеличивает межстрочный интервал для лучшей читаемости */
+    text-decoration: none; 
+    font-size: 11px; 
+    white-space: normal; /* Позволяем тексту переноситься */
 }
+
+
+.book-item {
+    transition: height 0.2s; /* Плавный переход для изменения высоты */
+}
+
 
 
 /* Для всех ссылок внутри book-item, чтобы убрать подчеркивание */
@@ -178,7 +185,7 @@ h1 {
     }
     .book-item {
         max-width: 180px; /* Уменьшение максимальной ширины для маленьких экранов */
-        height: 240px; /* Уменьшение высоты для маленьких экранов */
+
     }
     #searchInput {
         max-width: 90%; /* Уменьшаем ширину на мобильных */

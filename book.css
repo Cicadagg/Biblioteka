@@ -30,7 +30,7 @@ body {
 
 .sidebar {
     width: 100%; /* Занимает всю ширину на мобильных */
-    height: 100%; 
+    height: 100%;
     background-color: #f4f4f4;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: none; /* Скрыто по умолчанию */
@@ -51,94 +51,93 @@ body {
 
 .content {
     flex: 1;
-    padding: 8px; /* Уменьшен отступ */
+    padding: 50px; /* Уменьшен отступ */
 }
 
 .book-title {
-    background-color: black;
+    background-color: #333; /* Темный фон для заголовка книги */
     color: white;
-    padding: 10px; /* Уменьшен отступ */
+    padding: 20px; /* Увеличен отступ */
     text-align: left;
-    font-size: 20px; /* Уменьшен размер шрифта */
-    margin-bottom: 15px; /* Уменьшен отступ */
-}
-
-.book-details {
-    display: flex;
-    flex-direction: row; /* Горизонтальное расположение на ПК */
-    margin-bottom: 15px; /* Уменьшен отступ */
+    font-size: 26px; /* Увеличен размер шрифта заголовка книги */
+    margin-bottom: 25px; /* Увеличен отступ между заголовком и содержимым */
 }
 
 .book-image {
-    margin-right: 10px; /* Уменьшен отступ справа */
-    width: auto; /* Автоматическая ширина для изображения */
+    margin-right: 20px; /* Увеличен отступ справа */
 }
 
 .book-image img {
     max-width: 100%;
-    height: auto; 
+    border-radius: 8px; /* Закругленные углы изображения */
 }
 
-.book-description {
-    background-color: #e0e0e0; 
-    padding: 10px; /* Уменьшен отступ */
-    text-align: left; 
+.book-details {
+    display: flex;
+    flex-direction: row; /* Горизонтальное расположение */
+    margin-bottom: 25px; /* Отступ между описанием и содержимым */
+}
+
+.book-description,
+.book-content {
+    background-color: #f4f4f4; /* Более светлый фон для описания и контента */
+    padding: 20px; /* Увеличен отступ для лучшего восприятия текста */
+    text-align: left;
+    border-radius: 8px; /* Закругленные углы для описания и контента */
 }
 
 .book-info {
-    width: 100%; 
+    width: 100%;
 }
 
 .info-title {
-    background-color: black; 
+    background-color: #333; 
     color: white; 
-    padding: 8px; /* Уменьшен отступ */
+    padding: 15px; /* Увеличен отступ для заголовка информации */
     text-align: center; 
 }
 
 .book-author-year {
-    background-color: #e0e0e0; 
+    background-color: #eaeaea; 
     color: #000000; 
-    padding: 4px; /* Уменьшен отступ */
+    padding: 10px; /* Увеличен отступ для лучшего восприятия текста */
 }
 
-/* Медиа-запрос для мобильных устройств */
+/* Медиа-запросы для мобильных устройств */
 @media (max-width: 767px) {
-
+    .book-image {
+        margin-right: 0px; /* Увеличен отступ справа */
+    }
    .book-details {
         flex-direction: column; /* Вертикальное расположение на мобильных */
-        align-items:center; /* Центрирование содержимого */
+        align-items:center; 
    }
    
    .book-title,
    .book-description,
    .book-author-year {
-        width:auto; /* Автоматическая ширина для лучшего размещения */
-        text-align:center; /* Центрирование текста */
+        width:auto; 
+        text-align:center; 
    }
 }
 
-/* Медиа-запрос для больших экранов */
+/* Медиа-запросы для больших экранов */
 @media (min-width: 768px) {
 
-   body {
-        flex-direction: row; 
-   }
-   
-   .sidebar {
-        width: 130px; 
-        display:block; 
-   }
-   
-   .content {
-        margin-left: 30px; /* Уменьшен отступ слева */
-   }
-   
-   .top-bar {
-        display:none; 
-   }
+    body {
+        flex-direction: row; /* Возвращаем горизонтальное расположение */
+    }
+    .sidebar {
+        width: 130px;
+        display: block; /* Отображаем боковую панель на больших экранах */
+    }
+    .top-bar {
+        display: none; /* Скрываем верхнюю панель на больших экранах */
+    }
+
+    
    
    .book-details {
-        flex-direction: row; /* Горизонтальное расположение на больших экранах */
+        flex-direction: row;
    }
 }

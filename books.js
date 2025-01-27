@@ -1,6 +1,6 @@
 const API_KEY = 'AIzaSyCnwJ-PEA3yroXeiXL6rV_Ib0N1meHad70'; // Ваш API Key
 const SHEET_ID = '1aEXTCJLgTJAXx-jlmifkOYhDxhOfyEsIJDLJCNlFBi4'; // ID вашей таблицы
-const RANGE_BOOKS = 'Books!A2:G'; // Укажите диапазон данных для книг
+const RANGE_BOOKS = 'Books!A2:H'; // Укажите диапазон данных для книг
 const RANGE_CATEGORIES = 'Books!B2:B'; // Укажите диапазон данных для категорий
 
 async function fetchCategories() {
@@ -13,28 +13,44 @@ async function fetchCategories() {
             return;
         }
 
-        const categoriesCount = {}; // Объект для хранения количества книг по категориям
+        const categoriesCount = {};
         data.values.forEach(row => {
             const category = row[0];
             if (category) {
-                categoriesCount[category] = (categoriesCount[category] || 0) + 1; // Увеличиваем счетчик для категории
+                categoriesCount[category] = (categoriesCount[category] || 0) + 1;
             }
         });
 
+        // Определяем приоритетные категории
+        const priorityCategories = [
+            "Общеобразовательные дисциплины",
+            "Социально-гуманитарный цикл",
+            "Общепрофессиональный цикл"
+        ];
+
+        // Разделяем категории на приоритетные и остальные
+        const prioritySorted = priorityCategories.filter(cat => categoriesCount[cat]); // Сохраняем только те, которые есть в данных
+        const otherCategories = Object.keys(categoriesCount).filter(cat => !priorityCategories.includes(cat));
+
+        // Объединяем приоритетные категории с остальными
+        const sortedCategories = [...prioritySorted, ...otherCategories];
+
         const categoryButtons = document.getElementById('categoryButtons');
-        for (const [category, count] of Object.entries(categoriesCount)) {
+        sortedCategories.forEach(category => {
+            const count = categoriesCount[category];
             const button = document.createElement('button');
             button.className = 'category-button';
-            button.textContent = `${category} (${count})`; // Отображаем название категории и количество книг
+            button.textContent = `${category} (${count})`;
             button.onclick = () => {
-                window.location.href = `category.html?category=${encodeURIComponent(category)}`; // Переход на страницу категории
+                window.location.href = `category.html?category=${encodeURIComponent(category)}`;
             };
             categoryButtons.appendChild(button);
-        }
+        });
     } catch (error) {
         console.error("Ошибка при получении категорий:", error);
     }
 }
+
 
 async function fetchBooks() {
     try {
@@ -80,48 +96,51 @@ async function fetchBooks() {
         async function displayBooks(books) {
             grid.innerHTML = ''; // Очищаем предыдущие элементы
             for (const row of books) {
-                if (row.length < 7) { // Проверяем, что в строке достаточно данных (7 вместо 6)
+                if (row.length < 7) { // Изменено на 8
                     console.warn("Недостаточно данных в строке:", row);
-                    continue; // Проверка на наличие всех данных
+                    continue; 
                 }
         
-                const imgId = row[0]; // Получаем идентификатор книги
-                const category = row[1]; // Получаем категорию
-                const predmet = row[2]; // Получаем название предмета
-                const name = row[3]; // Получаем название книги
-                const year = row[4]; // Получаем год книги
-                const description = row[5]; // Получаем описание книги
-                const author = row[6]; // Получаем автора книги
-        
-                // Формируем URL для изображения
+                const imgId = row[0]; 
+                const category = row[1]; 
+                const predmet = row[2]; 
+                const name = row[3]; 
+                const year = row[4]; 
+                const description = row[5]; 
+                const author = row[6]; 
+                const content = row[7]; // Теперь вы можете использовать content
+                
                 const imgUrl = `https://cicadagg.github.io/Biblioteka/images/${imgId}.webp`;
-                const defaultImgUrl = `https://cicadagg.github.io/Biblioteka/images/not_book.webp`;
-
-        
-                // Проверка доступности изображения
+                const defaultImgUrl = `https://cicadagg.github.io/Biblioteka/images/not_book.webp`; 
+                
                 const imgExists = await checkImageExists(imgUrl);
         
                 const bookItem = document.createElement('div');
                 bookItem.className = 'book-item';
                 bookItem.innerHTML = `
-                    <a href="book.html?imgId=${imgId}&name=${encodeURIComponent(name)}&description=${encodeURIComponent(description)}&author=${encodeURIComponent(author)}&year=${encodeURIComponent(year)}&predmet=${encodeURIComponent(predmet)}">
+                    <a href="book.html?imgId=${imgId}&name=${encodeURIComponent(name)}&description=${encodeURIComponent(description)}&author=${encodeURIComponent(author)}&year=${encodeURIComponent(year)}&predmet=${encodeURIComponent(predmet)}&content=${encodeURIComponent(content)}">
                         <div class="book-image">
                             <img src="${imgExists ? imgUrl : defaultImgUrl}" alt="${name}">
-                            <div class="book-year">${year}</div> <!-- Добавляем год книги -->
+                            <div class="book-year">${year}</div> 
                         </div>
                         <div class="book-name">${name}</div>
                     </a>
                 `;
+
+                
                 grid.appendChild(bookItem);
+        
+                // Установите высоту book-item в зависимости от высоты book-name
+                const bookNameElement = bookItem.querySelector('.book-name');
+                const computedStyle = window.getComputedStyle(bookNameElement);
+                const height = parseFloat(computedStyle.lineHeight) * Math.ceil(bookNameElement.scrollHeight / parseFloat(computedStyle.lineHeight));
+                
+                bookItem.style.height = `${height + 70}px`; // Добавьте дополнительное пространство
             }
         
-            // Анимация появления
             grid.style.opacity = 1; // Устанавливаем непрозрачность в 1 для отображения
         }
         
-        
-        
-
         // Изначально отображаем отфильтрованные книги
         await displayBooks(filteredRows); // Добавлено await для асинхронного вызова
 
