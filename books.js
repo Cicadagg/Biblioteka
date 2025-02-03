@@ -16,7 +16,8 @@ async function fetchCategories() {
         const categoriesCount = {};
         data.values.forEach(row => {
             const category = row[0];
-            if (category) {
+            // Проверяем, что название категории существует и содержит 3 или более букв
+            if (category && category.length >= 3) {
                 categoriesCount[category] = (categoriesCount[category] || 0) + 1;
             }
         });

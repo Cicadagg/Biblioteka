@@ -8,12 +8,17 @@ body {
 }
 
 .top-bar {
-    background-color: white;
+    background-color: #c7c7c7;
     padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     overflow: hidden; /* Предотвращает выход элементов за пределы */
+    position: fixed; /* Фиксируем панель в верхней части */
+    top: 0; /* Устанавливаем панель в верхней части */
+    left: 0; /* Устанавливаем панель на всю ширину */
+    right: 0; /* Устанавливаем панель на всю ширину */
+    z-index: 1000; /* Увеличиваем z-index, чтобы панель была выше других элементов */
 }
 
 #menu-toggle {
@@ -51,7 +56,28 @@ body {
 
 .content {
     flex: 1;
-    padding: 50px; /* Уменьшен отступ */
+    padding: 20px;
+    text-align: center;
+    padding-left: 170px; /* Добавляем отступ слева */
+}
+
+/* Стиль для больших экранов (ПК) */
+@media (min-width: 768px) {
+    body {
+        flex-direction: row; /* Возвращаем горизонтальное расположение */
+        padding-top: 50px; /* Добавляем отступ сверху для контента, чтобы он не перекрывался .top-bar */
+    }
+    
+    .sidebar {
+        width: 130px;
+        display: block; /* Отображаем боковую панель на больших экранах */
+        height: calc(100% - 50px); /* Корректируем высоту боковой панели с учетом .top-bar */
+        position: fixed; /* Фиксируем боковую панель слева */
+        top: 50px; /* Отступ сверху для боковой панели */
+        left: 0; /* Устанавливаем боковую панель слева */
+        overflow-y: auto; /* Добавляем прокрутку для боковой панели при необходимости */
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Тень для боковой панели */
+    }
 }
 
 .book-title {
@@ -119,6 +145,13 @@ body {
         width:auto; 
         text-align:center; 
    }
+   .content {
+        flex: 1;
+        padding: 20px;
+        text-align: center;
+        padding-left: 20px; /* Добавляем отступ слева */
+        margin-top: 50px;
+    }
 }
 
 /* Медиа-запросы для больших экранов */
@@ -131,13 +164,9 @@ body {
         width: 130px;
         display: block; /* Отображаем боковую панель на больших экранах */
     }
-    .top-bar {
-        display: none; /* Скрываем верхнюю панель на больших экранах */
-    }
-
-    
    
    .book-details {
         flex-direction: row;
    }
+
 }

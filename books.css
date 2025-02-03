@@ -8,12 +8,17 @@ body {
 }
 
 .top-bar {
-    background-color: white;
+    background-color: #c7c7c7;
     padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     overflow: hidden; /* Предотвращает выход элементов за пределы */
+    position: fixed; /* Фиксируем панель в верхней части */
+    top: 0; /* Устанавливаем панель в верхней части */
+    left: 0; /* Устанавливаем панель на всю ширину */
+    right: 0; /* Устанавливаем панель на всю ширину */
+    
 }
 
 #menu-toggle {
@@ -48,9 +53,31 @@ body {
 .sidebar a:hover {
     background-color: #ddd;
 }
+
 .content {
     flex: 1;
-    padding: 10px;
+    padding: 20px;
+    text-align: center;
+    padding-left: 170px; /* Добавляем отступ слева */
+}
+
+/* Стиль для больших экранов (ПК) */
+@media (min-width: 768px) {
+    body {
+        flex-direction: row; /* Возвращаем горизонтальное расположение */
+        padding-top: 50px; /* Добавляем отступ сверху для контента, чтобы он не перекрывался .top-bar */
+    }
+    
+    .sidebar {
+        width: 130px;
+        display: block; /* Отображаем боковую панель на больших экранах */
+        height: calc(100% - 50px); /* Корректируем высоту боковой панели с учетом .top-bar */
+        position: fixed; /* Фиксируем боковую панель слева */
+        top: 50px; /* Отступ сверху для боковой панели */
+        left: 0; /* Устанавливаем боковую панель слева */
+        overflow-y: auto; /* Добавляем прокрутку для боковой панели при необходимости */
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Тень для боковой панели */
+    }
 }
 
 h1 {
@@ -177,9 +204,7 @@ h1 {
     .content {
         margin-left: 50px;
     }
-    .top-bar {
-        display: none;
-    }
+
     .book-grid {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Более широкие колонки для больших экранов */
     }
