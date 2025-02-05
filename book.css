@@ -13,12 +13,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    overflow: hidden; /* Предотвращает выход элементов за пределы */
-    position: fixed; /* Фиксируем панель в верхней части */
-    top: 0; /* Устанавливаем панель в верхней части */
-    left: 0; /* Устанавливаем панель на всю ширину */
-    right: 0; /* Устанавливаем панель на всю ширину */
-    z-index: 1000; /* Увеличиваем z-index, чтобы панель была выше других элементов */
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 #menu-toggle {
@@ -34,11 +34,15 @@ body {
 }
 
 .sidebar {
-    width: 100%; /* Занимает всю ширину на мобильных */
-    height: 100%;
+    width: 100%;
     background-color: #f4f4f4;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: none; /* Скрыто по умолчанию */
+    display: none;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    z-index: 999;
 }
 
 .sidebar a {
@@ -58,58 +62,63 @@ body {
     flex: 1;
     padding: 20px;
     text-align: center;
-    padding-left: 170px; /* Добавляем отступ слева */
+    padding-top: 50px; /* Отступ сверху для контента */
 }
 
-/* Стиль для больших экранов (ПК) */
+/* Media queries for larger screens */
 @media (min-width: 768px) {
     body {
-        flex-direction: row; /* Возвращаем горизонтальное расположение */
-        padding-top: 50px; /* Добавляем отступ сверху для контента, чтобы он не перекрывался .top-bar */
+        flex-direction: row;
+        padding-top: 50px;
     }
-    
+
     .sidebar {
         width: 130px;
-        display: block; /* Отображаем боковую панель на больших экранах */
-        height: calc(100% - 50px); /* Корректируем высоту боковой панели с учетом .top-bar */
-        position: fixed; /* Фиксируем боковую панель слева */
-        top: 50px; /* Отступ сверху для боковой панели */
-        left: 0; /* Устанавливаем боковую панель слева */
-        overflow-y: auto; /* Добавляем прокрутку для боковой панели при необходимости */
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Тень для боковой панели */
+        display: block;
+        height: calc(100% - 50px);
+        position: fixed;
+        top: 50px;
+        left: 0;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .content {
+        margin-left: 130px;
+        text-align: left;
     }
 }
 
 .book-title {
-    background-color: #333; /* Темный фон для заголовка книги */
+    background-color: #333;
     color: white;
-    padding: 20px; /* Увеличен отступ */
+    padding: 20px;
     text-align: left;
-    font-size: 26px; /* Увеличен размер шрифта заголовка книги */
-    margin-bottom: 25px; /* Увеличен отступ между заголовком и содержимым */
+    font-size: 26px;
+    margin-bottom: 25px;
 }
 
 .book-image {
-    margin-right: 20px; /* Увеличен отступ справа */
+    margin-right: 20px;
 }
 
 .book-image img {
     max-width: 100%;
-    border-radius: 8px; /* Закругленные углы изображения */
+    border-radius: 8px;
 }
 
 .book-details {
     display: flex;
-    flex-direction: row; /* Горизонтальное расположение */
-    margin-bottom: 25px; /* Отступ между описанием и содержимым */
+    flex-direction: column;
+    margin-bottom: 25px;
+    align-items: center;
 }
 
 .book-description,
 .book-content {
-    background-color: #f4f4f4; /* Более светлый фон для описания и контента */
-    padding: 20px; /* Увеличен отступ для лучшего восприятия текста */
+    background-color: #f4f4f4;
+    padding: 20px;
     text-align: left;
-    border-radius: 8px; /* Закругленные углы для описания и контента */
+    border-radius: 8px;
 }
 
 .book-info {
@@ -117,56 +126,33 @@ body {
 }
 
 .info-title {
-    background-color: #333; 
-    color: white; 
-    padding: 15px; /* Увеличен отступ для заголовка информации */
-    text-align: center; 
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
 }
 
 .book-author-year {
-    background-color: #eaeaea; 
-    color: #000000; 
-    padding: 10px; /* Увеличен отступ для лучшего восприятия текста */
+    background-color: #eaeaea;
+    color: #000000;
+    padding: 10px;
 }
 
-/* Медиа-запросы для мобильных устройств */
+/* Media queries for mobile devices */
 @media (max-width: 767px) {
     .book-image {
-        margin-right: 0px; /* Увеличен отступ справа */
+        margin-right: 0;
     }
-   .book-details {
-        flex-direction: column; /* Вертикальное расположение на мобильных */
-        align-items:center; 
-   }
-   
-   .book-title,
-   .book-description,
-   .book-author-year {
-        width:auto; 
-        text-align:center; 
-   }
-   .content {
-        flex: 1;
-        padding: 20px;
+
+    .book-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .book-title,
+    .book-description,
+    .book-author-year {
+        width: auto;
         text-align: center;
-        padding-left: 20px; /* Добавляем отступ слева */
-        margin-top: 50px;
     }
-}
-
-/* Медиа-запросы для больших экранов */
-@media (min-width: 768px) {
-
-    body {
-        flex-direction: row; /* Возвращаем горизонтальное расположение */
-    }
-    .sidebar {
-        width: 130px;
-        display: block; /* Отображаем боковую панель на больших экранах */
-    }
-   
-   .book-details {
-        flex-direction: row;
-   }
-
 }

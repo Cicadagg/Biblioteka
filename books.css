@@ -13,12 +13,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    overflow: hidden; /* Предотвращает выход элементов за пределы */
-    position: fixed; /* Фиксируем панель в верхней части */
-    top: 0; /* Устанавливаем панель в верхней части */
-    left: 0; /* Устанавливаем панель на всю ширину */
-    right: 0; /* Устанавливаем панель на всю ширину */
-    
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 #menu-toggle {
@@ -34,11 +34,15 @@ body {
 }
 
 .sidebar {
-    width: 100%; /* Занимает всю ширину на мобильных */
-    height: 100%;
+    width: 100%;
     background-color: #f4f4f4;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: none; /* Скрыто по умолчанию */
+    display: none;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    z-index: 999;
 }
 
 .sidebar a {
@@ -58,25 +62,29 @@ body {
     flex: 1;
     padding: 20px;
     text-align: center;
-    padding-left: 170px; /* Добавляем отступ слева */
+    padding-top: 50px; /* Отступ сверху для контента */
 }
 
 /* Стиль для больших экранов (ПК) */
 @media (min-width: 768px) {
     body {
-        flex-direction: row; /* Возвращаем горизонтальное расположение */
-        padding-top: 50px; /* Добавляем отступ сверху для контента, чтобы он не перекрывался .top-bar */
+        flex-direction: row;
+        padding-top: 50px;
     }
     
     .sidebar {
         width: 130px;
-        display: block; /* Отображаем боковую панель на больших экранах */
-        height: calc(100% - 50px); /* Корректируем высоту боковой панели с учетом .top-bar */
-        position: fixed; /* Фиксируем боковую панель слева */
-        top: 50px; /* Отступ сверху для боковой панели */
-        left: 0; /* Устанавливаем боковую панель слева */
-        overflow-y: auto; /* Добавляем прокрутку для боковой панели при необходимости */
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Тень для боковой панели */
+        display: block;
+        position: fixed;
+        top: 50px;
+        left: 0;
+        height: calc(100% - 50px);
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .content {
+        margin-left: 130px;
+        padding-left: 20px;
     }
 }
 
@@ -91,11 +99,11 @@ h1 {
     overflow: hidden;
     position: relative;
     transition: transform 0.2s;
-    width: 100%; 
-    max-width: 180px; 
-    height: auto; 
+    width: 100%;
+    max-width: 180px;
+    height: auto;
     margin: 1px;
-    min-height: 100px; /* Установите минимальную высоту */
+    min-height: 100px;
 }
 
 .book-item:hover {
@@ -107,8 +115,8 @@ h1 {
 }
 
 .book-image img {
-    width: 100%; /* Изображение занимает 100% ширины контейнера */
-    height: auto; /* Высота изображения автоматически подстраивается */
+    width: 100%;
+    height: auto;
 }
 
 .book-description {
@@ -121,36 +129,30 @@ h1 {
     color: white;
     padding: 10px;
     opacity: 0.8;
-    transition: opacity 0.3s; /* Плавное появление описания */
+    transition: opacity 0.3s;
 }
-
 
 .book-image:hover .book-description {
     display: block;
-    opacity: 1; /* Полная непрозрачность при наведении */
+    opacity: 1;
 }
-
 
 .book-name {
     text-align: center;
     padding: 5px;
     font-weight: bold;
-    text-decoration: none; 
-    font-size: 11px; 
-    white-space: normal; /* Позволяем тексту переноситься */
+    text-decoration: none;
+    font-size: 11px;
+    white-space: normal;
 }
-
 
 .book-item {
-    transition: height 0.2s; /* Плавный переход для изменения высоты */
+    transition: height 0.2s;
 }
 
-
-
-/* Для всех ссылок внутри book-item, чтобы убрать подчеркивание */
 .book-item a {
-    text-decoration: none; /* Убираем подчеркивание для всех ссылок в book-item */
-    color: inherit; /* Устанавливаем цвет текста как у родителя (book-name) */
+    text-decoration: none;
+    color: inherit;
 }
 
 .book-grid {
@@ -158,33 +160,27 @@ h1 {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     padding: 10px;
-    opacity: 0; /* Начальное состояние для анимации */
-    transition: opacity 0.5s ease; /* Плавный переход для анимации */
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
 .book-year {
-    position: absolute; /* Позиционируем год над изображением */
-    top: 5px; /* Расстояние от верхней части изображения */
-    right: 5px; /* Расстояние от правой части изображения */
-    color: rgb(255, 255, 255); /* Цвет текста - белый */
-    text-shadow: 
-        -1px -1px 0 rgba(0, 0, 0, 1),  
-        1px -1px 0 rgba(0, 0, 0, 1),  
-        -1px 1px 0 rgba(0, 0, 0, 1),  
-        1px 1px 0 rgba(0, 0, 0, 1); /* Черная обводка текста */
-    z-index: 1; /* Убедитесь, что элемент отображается поверх других */
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: rgb(255, 255, 255);
+    text-shadow: -1px -1px 0 rgba(0, 0, 0, 1), 1px -1px 0 rgba(0, 0, 0, 1), -1px 1px 0 rgba(0, 0, 0, 1), 1px 1px 0 rgba(0, 0, 0, 1);
+    z-index: 1;
 }
-
-
 
 #searchInput {
     width: 100%;
-    max-width: 400px; /* Устанавливаем максимальную ширину */
+    max-width: 400px;
     padding: 10px;
-    margin: 20px auto; /* Центрируем элемент */
+    margin: 20px auto;
     border: 1px solid #ccc;
     border-radius: 4px;
-    transition: all 0.3s ease; /* Добавляем плавную анимацию */
+    transition: all 0.3s ease;
 }
 
 .book-count {
@@ -194,34 +190,19 @@ h1 {
 
 /* Медиа-запрос для больших экранов */
 @media (min-width: 768px) {
-    body {
-        flex-direction: row;
-    }
-    .sidebar {
-        width: 130px;
-        display: block;
-    }
-    .content {
-        margin-left: 50px;
-    }
-
     .book-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Более широкие колонки для больших экранов */
-    }
-    .book-item {
-        max-width: 180px; /* Уменьшение максимальной ширины для маленьких экранов */
-
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     }
     #searchInput {
-        max-width: 90%; /* Уменьшаем ширину на мобильных */
+        max-width: 90%;
     }
 }
 
 /* Медиа-запрос для маленьких экранов */
 @media (max-width: 480px) {
     #searchInput {
-        max-width: 90%; /* Уменьшение максимальной ширины для мобильных устройств */
-        margin: 10px auto; /* Центрирование элемента */
+        max-width: 90%;
+        margin: 10px auto;
     }
 }
 
@@ -233,28 +214,27 @@ h1 {
 }
 
 .category-button {
-    background-color: white; /* Изменяем цвет на белый */
-    color: #333; /* Темный текст для контраста */
-    padding: 15px 30px; /* Увеличиваем отступы */
-    margin: 10px; /* Увеличиваем отступ между кнопками */
-    border: 1px solid #ccc; /* Добавляем рамку для выделения */
-    border-radius: 8px; /* Увеличиваем радиус скругления */
+    background-color: white;
+    color: #333;
+    padding: 15px 30px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s; /* Плавный переход для фона и трансформации */
-    font-size: 16px; /* Увеличиваем размер шрифта */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Добавляем тень для глубины */
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .category-button:hover {
-    background-color: #f0f0f0; /* Светло-серый фон при наведении */
-    transform: scale(1.05); /* Увеличение кнопки при наведении */
+    background-color: #f0f0f0;
+    transform: scale(1.05);
 }
 
 /* Адаптивные стили для маленьких экранов */
 @media (max-width: 480px) {
     .category-button {
-        padding: 10px 20px; /* Уменьшаем отступы на мобильных */
-        font-size: 14px; /* Уменьшаем размер шрифта на мобильных */
+        padding: 10px 20px;
+        font-size: 14px;
     }
 }
-

@@ -1,5 +1,5 @@
-const API_KEY = 'AIzaSyCnwJ-PEA3yroXeiXL6rV_Ib0N1meHad70'; // Ваш API Key
-const SHEET_ID = '1aEXTCJLgTJAXx-jlmifkOYhDxhOfyEsIJDLJCNlFBi4'; // ID вашей таблицы
+const API_KEY = 'AIzaSyCnwJ-PEA3yroXeiXL6rV_Ib0N1meHad70'; 
+const SHEET_ID = '1aEXTCJLgTJAXx-jlmifkOYhDxhOfyEsIJDLJCNlFBi4'; 
 const RANGE_BOOKS = 'Books!A2:I'; // Укажите диапазон данных для книг
 const RANGE_CATEGORIES = 'Books!B2:B'; // Укажите диапазон данных для категорий
 

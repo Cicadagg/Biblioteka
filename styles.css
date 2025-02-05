@@ -13,12 +13,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    overflow: hidden; /* Предотвращает выход элементов за пределы */
-    position: fixed; /* Фиксируем панель в верхней части */
-    top: 0; /* Устанавливаем панель в верхней части */
-    left: 0; /* Устанавливаем панель на всю ширину */
-    right: 0; /* Устанавливаем панель на всю ширину */
-    z-index: 1000; /* Увеличиваем z-index, чтобы панель была выше других элементов */
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 #menu-toggle {
@@ -34,11 +34,15 @@ body {
 }
 
 .sidebar {
-    width: 100%; /* Занимает всю ширину на мобильных */
-    height: 100%;
+    width: 100%;
     background-color: #f4f4f4;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: none; /* Скрыто по умолчанию */
+    display: none;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    z-index: 999;
 }
 
 .sidebar a {
@@ -58,23 +62,49 @@ body {
     flex: 1;
     padding: 20px;
     text-align: center;
+    padding-top: 50px; /* Отступ сверху для контента */
+}
+
+.announcements {
+    width: 100%;
+    background-color: #f9f9f9;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    display: block; /* Показывать по умолчанию */
+    position: static;
+    z-index: 998;
+    margin-top: 20px;
 }
 
 /* Стиль для больших экранов (ПК) */
 @media (min-width: 768px) {
     body {
-        flex-direction: row; /* Возвращаем горизонтальное расположение */
-        padding-top: 50px; /* Добавляем отступ сверху для контента, чтобы он не перекрывался .top-bar */
+        flex-direction: row;
+        padding-top: 50px;
     }
     
     .sidebar {
         width: 130px;
-        display: block; /* Отображаем боковую панель на больших экранах */
-        height: calc(100% - 50px); /* Корректируем высоту боковой панели с учетом .top-bar */
-        position: fixed; /* Фиксируем боковую панель слева */
-        top: 50px; /* Отступ сверху для боковой панели */
-        left: 0; /* Устанавливаем боковую панель слева */
-        overflow-y: auto; /* Добавляем прокрутку для боковой панели при необходимости */
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Тень для боковой панели */
+        display: block;
+        height: calc(100% - 50px);
+        position: fixed;
+        top: 50px;
+        left: 0;
+        overflow-y: auto;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .content {
+        flex: 1;
+        padding-top: 70px; /* Увеличен отступ для ПК */
+    }
+
+    .announcements {
+        width: 300px;
+        position: fixed;
+        top: 50px;
+        right: 0;
+        height: calc(100% - 50px);
+        overflow-y: auto;
+        margin-top: 0;
     }
 }
