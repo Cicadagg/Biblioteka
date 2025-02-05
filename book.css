@@ -65,13 +65,13 @@ body {
     padding-top: 50px; /* Отступ сверху для контента */
 }
 
-/* Media queries for larger screens */
+/* Стиль для больших экранов (ПК) */
 @media (min-width: 768px) {
     body {
         flex-direction: row;
         padding-top: 50px;
     }
-
+    
     .sidebar {
         width: 130px;
         display: block;
@@ -79,12 +79,16 @@ body {
         position: fixed;
         top: 50px;
         left: 0;
+        overflow-y: auto;
         box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     }
 
     .content {
-        margin-left: 130px;
-        text-align: left;
+        margin-left: 130px; /* Отступ для контента, чтобы не перекрывать sidebar */
+    }
+
+    .book-details {
+        flex-direction: row;
     }
 }
 
@@ -108,9 +112,8 @@ body {
 
 .book-details {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-bottom: 25px;
-    align-items: center;
 }
 
 .book-description,
@@ -138,21 +141,29 @@ body {
     padding: 10px;
 }
 
-/* Media queries for mobile devices */
+/* Медиа-запросы для мобильных устройств */
 @media (max-width: 767px) {
     .book-image {
         margin-right: 0;
     }
-
+    
     .book-details {
         flex-direction: column;
         align-items: center;
     }
-
+    
     .book-title,
     .book-description,
     .book-author-year {
         width: auto;
         text-align: center;
+    }
+    
+    .content {
+        flex: 1;
+        padding: 20px;
+        text-align: center;
+        padding-left: 20px;
+        margin-top: 50px;
     }
 }
