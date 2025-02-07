@@ -23,6 +23,8 @@ body {
     height: auto;
     display: block;
     object-fit: cover; /* Или contain, если нужно уместить изображение целиком */
+    top: -30px; 
+    
 }
 
 .top-bar {
@@ -172,5 +174,6 @@ body {
         height: auto;   /* Автоматическая высота для сохранения пропорций */
         display: block;
         object-fit: contain; /* или cover, в зависимости от нужного поведения */
+        
     }
 }
