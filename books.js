@@ -114,7 +114,10 @@ async function fetchBooks() {
                 const author = row[6]; 
                 const content = row[7]; 
                 const sledkniga = row[8];
-
+        
+                // Сохраняем полное название книги
+                const fullName = name;
+        
                 // Обрезаем название книги, если оно превышает 30 символов
                 if (name.length > 30) {
                     name = name.substring(0, 30) + '...';
@@ -127,8 +130,9 @@ async function fetchBooks() {
         
                 const bookItem = document.createElement('div');
                 bookItem.className = 'book-item';
+                // Используем fullName для передачи полного названия в URL
                 bookItem.innerHTML = `
-                    <a href="book.html?imgId=${imgId}&name=${encodeURIComponent(name)}&description=${encodeURIComponent(description)}&author=${encodeURIComponent(author)}&year=${encodeURIComponent(year)}&predmet=${encodeURIComponent(predmet)}&content=${encodeURIComponent(content)}">
+                    <a href="book.html?imgId=${imgId}&name=${encodeURIComponent(fullName)}&description=${encodeURIComponent(description)}&author=${encodeURIComponent(author)}&year=${encodeURIComponent(year)}&predmet=${encodeURIComponent(predmet)}&content=${encodeURIComponent(content)}">
                         <div class="book-image">
                             <img src="${imgExists ? imgUrl : defaultImgUrl}" alt="${name}">
                             <div class="book-year">${year}</div> 
@@ -136,7 +140,7 @@ async function fetchBooks() {
                         <div class="book-name">${name}</div>
                     </a>
                 `;
-
+        
                 grid.appendChild(bookItem);
         
                 // Установите высоту book-item в зависимости от высоты book-name
@@ -149,6 +153,7 @@ async function fetchBooks() {
         
             grid.style.opacity = 1; // Устанавливаем непрозрачность в 1 для отображения
         }
+        
 
         // Сортируем книги по sledkniga и сохраняем порядок, если sledkniga не указан
         let orderedBooks;

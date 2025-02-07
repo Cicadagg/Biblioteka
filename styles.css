@@ -7,6 +7,24 @@ body {
     height: 100vh;
 }
 
+.top-bar-image {
+    width: 100%;
+    height: 100px; /* Adjust as needed */
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    background-color: #fff; /* Добавьте цвет фона, если нужно */
+}
+
+.top-bar-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover; /* Или contain, если нужно уместить изображение целиком */
+}
+
 .top-bar {
     background-color: #c7c7c7;
     padding: 10px;
@@ -15,7 +33,7 @@ body {
     align-items: center;
     overflow: hidden;
     position: fixed;
-    top: 0;
+    top: calc(100px); /* Используем calc, чтобы позиционировать точно под image. Замените 100px на высоту top-bar-image */
     left: 0;
     right: 0;
     z-index: 1000;
@@ -39,7 +57,7 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: none;
     position: fixed;
-    top: 50px;
+    top: calc(100px + 40px); /* Correct top value to be under both image and top-bar (100px + top-bar height + padding) */
     left: 0;
     right: 0;
     z-index: 999;
@@ -61,8 +79,9 @@ body {
 .content {
     flex: 1;
     padding: 20px;
+    padding-right: 30px; /* Отступ справа */
     text-align: center;
-    padding-top: 50px; /* Отступ сверху для контента */
+    padding-top: calc(100px + 60px); /* Adjust padding to accommodate fixed elements */
 }
 
 .announcements {
@@ -73,6 +92,33 @@ body {
     position: static;
     z-index: 998;
     margin-top: 20px;
+    padding: 10px; /* Add padding to the announcements container */
+}
+
+.announcement-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+    border: 2px solid #ADD8E6; /* Light blue border, slightly thicker */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.announcement-item img {
+    width: 200px; /* Set a fixed width for images */
+    height: 150px; /* Set a fixed height for images */
+    object-fit: cover; /* Maintain aspect ratio and cover the area */
+    margin-bottom: 10px;
+}
+
+.announcement-item a {
+    text-decoration: none; /* Remove underline from links */
+}
+
+.announcement-item div {
+    color: #4682B4; /* Softer blue text color (SteelBlue) */
+    text-align: center; /* Center the text */
 }
 
 /* Стиль для больших экранов (ПК) */
@@ -87,7 +133,7 @@ body {
         display: block;
         height: calc(100% - 50px);
         position: fixed;
-        top: 50px;
+        top: 150px;
         left: 0;
         overflow-y: auto;
         box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -95,16 +141,36 @@ body {
 
     .content {
         flex: 1;
-        padding-top: 70px; /* Увеличен отступ для ПК */
+        padding-top: 170px; /* Adjust padding to accommodate fixed elements */
     }
 
     .announcements {
         width: 300px;
         position: fixed;
-        top: 50px;
+        top: 150px;
         right: 0;
-        height: calc(100% - 50px);
+        height: calc(100% - 150px);
         overflow-y: auto;
         margin-top: 0;
+    }
+
+    .top-bar-image {
+        width: 100%;
+        height: 100px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1001;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff; /* Добавьте цвет фона, если необходимо */
+    }
+    
+    .top-bar-image img {
+        width: 100%;   /* Изображение занимает всю ширину контейнера */
+        height: auto;   /* Автоматическая высота для сохранения пропорций */
+        display: block;
+        object-fit: contain; /* или cover, в зависимости от нужного поведения */
     }
 }

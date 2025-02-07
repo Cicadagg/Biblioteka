@@ -17,18 +17,18 @@ async function fetchAnnouncements() {
 
         rows.forEach(([id, title, startTime, endTime, link]) => {
             const imgUrl = `https://cicadagg.github.io/Biblioteka/images/${id}.webp`;
-            const now = new Date();
             const start = new Date(startTime);
-            const end = new Date(endTime);
-            const timeRemaining = now < start ? `До начала: ${Math.ceil((start - now) / (1000 * 60 * 60 * 24))} дней` : `До конца: ${Math.ceil((end - now) / (1000 * 60 * 60 * 24))} дней`;
-        
+            
+            // Format the start date to a readable string
+            const startDate = start.toLocaleDateString(); 
+
             const announcementItem = document.createElement('div');
             announcementItem.className = 'announcement-item';
             announcementItem.innerHTML = `
                 <a href="${link}" target="_blank">
                     <img src="${imgUrl}" alt="${title}">
                 </a>
-                <div>${timeRemaining}</div>
+                <div>${startDate} - ${title}</div>
             `;
         
             announcementGrid.appendChild(announcementItem);
@@ -39,4 +39,4 @@ async function fetchAnnouncements() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', fetchAnnouncements);
+document.addEventListener('DOMContentLoaded', fetchAnnouncements)
