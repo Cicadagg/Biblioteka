@@ -1,6 +1,6 @@
 const API_KEY = 'AIzaSyCnwJ-PEA3yroXeiXL6rV_Ib0N1meHad70';
 const SHEET_ID = '1aEXTCJLgTJAXx-jlmifkOYhDxhOfyEsIJDLJCNlFBi4';
-const RANGE_ANNOUNCEMENTS = 'News!A2:E'; // Update with your actual range
+const RANGE_ANNOUNCEMENTS = 'News!A2:E';
 
 async function fetchAnnouncements() {
     try {
@@ -15,11 +15,10 @@ async function fetchAnnouncements() {
         const rows = data.values;
         const announcementGrid = document.getElementById('announcementGrid');
 
-        rows.forEach(([id, title, startTime, endTime, link]) => {
+        rows.forEach(([id, title, startTime, link]) => {
             const imgUrl = `https://cicadagg.github.io/Biblioteka/images/${id}.webp`;
             const start = new Date(startTime);
             
-            // Format the start date to a readable string
             const startDate = start.toLocaleDateString(); 
 
             const announcementItem = document.createElement('div');

@@ -116,13 +116,23 @@ body {
     margin-bottom: 25px;
 }
 
-.book-description,
 .book-content {
     background-color: #f4f4f4;
     padding: 20px;
     text-align: left;
-    border-radius: 8px;
+    border-radius: 14px;
+    width: 30%;
+    margin-left: 20px; /* Добавляем отступ справа */
 }
+
+.book-description {
+    background-color: #f4f4f4;
+    padding: 20px;
+    text-align: left;
+    border-radius: 8px;
+    width: 70%;
+}
+
 
 .book-info {
     width: 100%;
